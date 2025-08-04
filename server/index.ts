@@ -63,7 +63,7 @@ app.use((req, res, next) => {
   const port = parseInt(process.env.PORT || '3117', 10);
   server.listen({
     port,
-    host: "0.0.0.0",
+    host: "leadspoint.in",
 
   }, () => {
     log(`serving on port ${port}`);
