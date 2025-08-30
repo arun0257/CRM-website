@@ -12,14 +12,14 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-left">
             <div className="mb-6">
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
                 #1 CRM for Growing Businesses
               </span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight" itemProp="name">
               Grow your business with
-              <span className="text-blue-600 block">Leadspoint CRM</span>
+              <span className="text-black block">Leadspoint CRM</span>
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-lg" itemProp="description">
@@ -75,7 +75,7 @@ export function HeroSection() {
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-xl border border-blue-100">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 shadow-xl border border-gray-200">
               <img 
                 src="/Dashboard.png" 
                 alt="Leadspoint CRM Dashboard - Lead management interface showing WhatsApp integration and analytics" 
@@ -95,9 +95,9 @@ export function HeroSection() {
               </div>
             </div>
             
-            <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-blue-200">
+            <div className="absolute -bottom-4 -right-4 bg-white rounded-lg shadow-lg p-3 border border-gray-200">
               <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce-subtle"></div>
+                <div className="w-3 h-3 bg-black rounded-full animate-bounce-subtle"></div>
                 <span className="text-sm font-medium text-gray-700">AI-Powered Analytics</span>
               </div>
             </div>

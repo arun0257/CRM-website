@@ -67,8 +67,8 @@ export function TestimonialsSection() {
                 "{testimonial.content}"
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-semibold text-sm">{testimonial.avatar}</span>
+                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-gray-700 font-semibold text-sm">{testimonial.avatar}</span>
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">{testimonial.name}</div>

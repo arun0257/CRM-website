@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Colors */
-  --brand-primary: hsl(217, 91%, 60%);    /* #3B82F6 - Main Blue */
-  --brand-secondary: hsl(217, 91%, 67%);  /* #60A5FA - Light Blue */
+  /* Brand Colors - Black/Gray Theme */
+  --brand-primary: hsl(0, 0%, 0%);        /* #000000 - Black */
+  --brand-secondary: hsl(0, 0%, 31%);     /* #4F4F4F - Gray-600 */
   --brand-accent: hsl(142, 71%, 45%);     /* #10B981 - Success Green */
   --brand-warning: hsl(45, 93%, 47%);     /* #F59E0B - Warning Orange */
   --brand-error: hsl(0, 84%, 60%);        /* #EF4444 - Error Red */
@@ -104,11 +104,11 @@
   }
   
   .brand-shadow {
-    box-shadow: 0 10px 25px -5px hsla(217, 91%, 60%, 0.25), 0 10px 10px -5px hsla(217, 91%, 60%, 0.04);
+    box-shadow: 0 10px 25px -5px hsla(0, 0%, 0%, 0.25), 0 10px 10px -5px hsla(0, 0%, 0%, 0.04);
   }
   
   .focus-brand {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2;
   }
   
   .btn-primary {
@@ -116,7 +116,7 @@
   }
   
   .btn-secondary {
-    @apply border-2 border-blue-200 text-blue-700 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 focus-brand;
+    @apply border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 focus-brand;
   }
 
   .neon-glow {
@@ -145,6 +145,25 @@
 }
 
 @layer utilities {
+  .modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+  }
+  
+  .modal-content {
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+  
+  .no-scroll {
+    overflow: hidden !important;
+  }
+  
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -192,11 +211,11 @@
 
 @keyframes pulseBrand {
   0%, 100% { 
-    box-shadow: 0 10px 25px -5px hsla(217, 91%, 60%, 0.25);
+    box-shadow: 0 10px 25px -5px hsla(0, 0%, 0%, 0.25);
     transform: scale(1);
   }
   50% { 
-    box-shadow: 0 15px 35px -5px hsla(217, 91%, 60%, 0.4);
+    box-shadow: 0 15px 35px -5px hsla(0, 0%, 0%, 0.4);
     transform: scale(1.02);
   }
 }

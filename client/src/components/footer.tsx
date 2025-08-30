@@ -76,7 +76,7 @@ export function Footer() {
             </div>
             
             <div className="flex space-x-3">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-all duration-300 hover:scale-110">
+              <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-all duration-300 hover:scale-110">
                 <Facebook className="w-4 h-4 text-white" />
               </div>
               <div className="w-8 h-8 brand-gradient rounded-lg flex items-center justify-center cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-110">
@@ -85,7 +85,7 @@ export function Footer() {
               <div className="w-8 h-8 bg-pink-500 rounded-lg flex items-center justify-center cursor-pointer hover:bg-pink-600 transition-all duration-300 hover:scale-110">
                 <Instagram className="w-4 h-4 text-white" />
               </div>
-              <div className="w-8 h-8 bg-blue-400 rounded-lg flex items-center justify-center cursor-pointer hover:bg-blue-500 transition-all duration-300 hover:scale-110">
+              <div className="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-600 transition-all duration-300 hover:scale-110">
                 <Twitter className="w-4 h-4 text-white" />
               </div>
             </div>
@@ -123,7 +123,7 @@ export function Footer() {
             <p className="text-gray-400">&copy; 2025 Leadspoint. All rights reserved.</p>
             <div className="flex space-x-4">
               <span className="text-sm bg-orange-100 text-orange-800 px-3 py-1 rounded-full">🇮🇳 Made in India</span>
-              <span className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">🔒 ISO 27001</span>
+              <span className="text-sm bg-gray-100 text-gray-800 px-3 py-1 rounded-full">🔒 ISO 27001</span>
               <span className="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">⚡ 99.9% Uptime</span>
             </div>
           </div>

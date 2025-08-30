@@ -41,6 +41,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Trial form submission endpoint
+  app.post("/api/trial-signup", async (req, res) => {
+    try {
+      const trialSchema = z.object({
+        name: z.string().min(1, "Name is required"),
+        phone: z.string().min(10, "Valid phone number is required"),
+        organization: z.string().min(1, "Organization is required"),
+        users: z.string().min(1, "Team size is required"),
+        business: z.string().min(1, "Industry is required"),
+      });
+
+      const data = trialSchema.parse(req.body);
+      
+      console.log("Trial signup:", data);
+      
+      res.json({ 
+        success: true, 
+        message: "Trial signup successful!",
+        data 
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          errors: error.errors 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Internal server error" 
+        });
+      }
+    }
+  });
+
   // Demo scheduling endpoint
   app.post("/api/schedule-demo", async (req, res) => {
     try {
@@ -73,6 +108,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
     }
+  });
+
+  // Get trial submissions endpoint
+  app.get("/api/trial-submissions", async (req, res) => {
+    // In a real app, this would fetch from database
+    // For now, return empty array as data is only logged to console
+    res.json({ 
+      success: true, 
+      submissions: [] 
+    });
   });
 
   const httpServer = createServer(app);

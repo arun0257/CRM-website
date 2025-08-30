@@ -42,7 +42,7 @@ const indiaFeatures = [
 
 export function IndiaFeatures() {
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-50 to-green-50">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,10 +72,10 @@ export function IndiaFeatures() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-orange-100"
+                className="bg-white rounded-lg p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 brand-gradient rounded-lg flex items-center justify-center flex-shrink-0">
                     <IconComponent className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -101,7 +101,7 @@ export function IndiaFeatures() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-white rounded-lg p-8 shadow-sm border border-orange-200">
+          <div className="bg-white rounded-lg p-8 shadow-sm border border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Understanding Indian Business Culture
             </h3>

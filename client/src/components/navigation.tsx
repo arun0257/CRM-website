@@ -38,6 +38,7 @@ export function Navigation() {
   }, []);
 
   return (
+    <>
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -55,25 +56,25 @@ export function Navigation() {
           <div className="hidden md:flex space-x-8">
             <button
               onClick={() => scrollToSection("features")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium focus-brand"
+              className="text-gray-700 hover:text-black transition-colors font-medium focus-brand"
             >
               Features
             </button>
             <button
               onClick={() => scrollToSection("pricing")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Pricing
             </button>
             <button
               onClick={() => scrollToSection("testimonials")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Reviews
             </button>
             <button
               onClick={() => scrollToSection("integrations")}
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-black transition-colors font-medium"
             >
               Integrations
             </button>
@@ -83,7 +84,7 @@ export function Navigation() {
           <div className="hidden md:flex items-center space-x-4">
             <Button 
               variant="ghost" 
-              className="text-gray-700 hover:text-blue-600"
+              className="text-gray-700 hover:text-black"
               onClick={() => window.open('https://app.leadspoint.in', '_blank', 'noopener,noreferrer')}
             >
               Sign In
@@ -119,32 +120,32 @@ export function Navigation() {
               <div className="flex flex-col space-y-4">
                 <button
                   onClick={() => scrollToSection("features")}
-                  className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                  className="text-left text-gray-700 hover:text-black transition-colors font-medium"
                 >
                   Features
                 </button>
                 <button
                   onClick={() => scrollToSection("pricing")}
-                  className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                  className="text-left text-gray-700 hover:text-black transition-colors font-medium"
                 >
                   Pricing
                 </button>
                 <button
                   onClick={() => scrollToSection("testimonials")}
-                  className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                  className="text-left text-gray-700 hover:text-black transition-colors font-medium"
                 >
                   Reviews
                 </button>
                 <button
                   onClick={() => scrollToSection("integrations")}
-                  className="text-left text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                  className="text-left text-gray-700 hover:text-black transition-colors font-medium"
                 >
                   Integrations
                 </button>
                 <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200">
                   <Button 
                     variant="ghost" 
-                    className="justify-start text-gray-700 hover:text-blue-600"
+                    className="justify-start text-gray-700 hover:text-black"
                     onClick={() => window.open('https://app.leadspoint.in', '_blank', 'noopener,noreferrer')}
                   >
                     Sign In
@@ -161,11 +162,12 @@ export function Navigation() {
           )}
         </AnimatePresence>
       </div>
-      
-      <TrialForm 
-        isOpen={isTrialFormOpen} 
-        onClose={() => setIsTrialFormOpen(false)} 
-      />
     </motion.nav>
+    
+    <TrialForm 
+      isOpen={isTrialFormOpen} 
+      onClose={() => setIsTrialFormOpen(false)} 
+    />
+    </>
   );
 }

@@ -69,7 +69,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0], index: number }) => 
     )}
     
     <div className={`bg-white rounded-lg shadow-lg p-8 h-full border-2 transition-all duration-300 hover:shadow-xl ${
-      plan.popular ? 'border-blue-400 scale-105 brand-shadow' : 'border-gray-200'
+      plan.popular ? 'border-black scale-105 brand-shadow' : 'border-gray-200'
     }`}>
       <div className="text-center">
         <h3 className="text-2xl font-bold text-gray-900 mb-4" itemProp="name">{plan.name}</h3>
@@ -98,7 +98,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0], index: number }) => 
         className={`w-full py-3 transition-all duration-300 ${
           plan.popular
             ? 'brand-gradient text-white brand-shadow hover:shadow-lg'
-            : 'bg-gray-100 hover:bg-gray-200 text-gray-900 border border-gray-300'
+            : 'bg-gray-500 hover:bg-gray-600 text-white border border-gray-400'
         }`}
       >
         {plan.name === 'Enterprise' ? 'Contact Sales' : 'Start Free Trial'}
