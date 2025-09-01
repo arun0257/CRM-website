@@ -49,7 +49,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
       
       if (response.ok) {
         const result = await response.json();
-        alert(`OTP sent! ${result.otp ? `Your OTP: ${result.otp}` : 'Check your email'}`);
+        alert('OTP sent to your email. Please check your inbox.');
         setOtpSent(true);
       } else {
         const error = await response.json();
