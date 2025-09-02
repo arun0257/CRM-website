@@ -101,14 +101,14 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
       
       if (response.ok) {
         const result = await response.json();
-        alert('Registration successful! You will receive login credentials after admin approval.');
-        onClose();
+        setStep(3); // Show success step
       } else {
         const error = await response.json();
         alert(error.error || 'Registration failed');
       }
     } catch (error) {
       console.error('Failed to complete registration:', error);
+      alert('Registration failed. Please try again.');
     }
   };
 
@@ -149,15 +149,49 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
                     <Rocket className="w-8 h-8 text-white" />
                   </div>
                   <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
-                    {step === 1 ? 'Verify Your Email' : 'Complete Registration'}
+                    {step === 1 ? 'Verify Your Email' : step === 2 ? 'Complete Registration' : 'Registration Submitted!'}
                   </CardTitle>
                   <p className="text-gray-600">
-                    {step === 1 ? 'Join 10,000+ businesses growing with Leadspoint' : 'Tell us about your organization'}
+                    {step === 1 ? 'Join 10,000+ businesses growing with Leadspoint' : 
+                     step === 2 ? 'Tell us about your organization' : 
+                     'Your trial request is being reviewed'}
                   </p>
                 </div>
               </CardHeader>
               <CardContent className="px-8 pb-8">
-                {step === 1 ? (
+                {step === 3 ? (
+                  <div className="text-center space-y-6">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                      <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Registration Submitted Successfully!</h3>
+                      <p className="text-gray-600 mb-4">
+                        Thank you for choosing Leadspoint CRM. Your trial request has been submitted and is now under review.
+                      </p>
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-left">
+                        <h4 className="font-semibold text-blue-900 mb-2">What happens next?</h4>
+                        <ul className="text-sm text-blue-800 space-y-1">
+                          <li>• Our team will review your application within 24 hours</li>
+                          <li>• You'll receive an email with your login credentials once approved</li>
+                          <li>• Your 14-day free trial will begin immediately after approval</li>
+                          <li>• No credit card required during the trial period</li>
+                        </ul>
+                      </div>
+                      <p className="text-sm text-gray-500 mt-4">
+                        Questions? Contact us at <a href="mailto:support@leadspoint.in" className="text-blue-600 hover:underline">support@leadspoint.in</a>
+                      </p>
+                    </div>
+                    <Button
+                      onClick={onClose}
+                      className="w-full brand-gradient text-white h-12 text-lg font-semibold rounded-lg brand-shadow hover:shadow-xl transition-all duration-200"
+                    >
+                      Close
+                    </Button>
+                  </div>
+                ) : step === 1 ? (
                   !otpSent ? (
                     <form onSubmit={handleEmailSubmit} className="space-y-6">
                       <div>
