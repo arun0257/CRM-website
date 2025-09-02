@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { FeaturesSection } from "@/components/features-section";
@@ -10,22 +11,33 @@ import { PricingSection } from "@/components/pricing-section";
 import { IntegrationsSection } from "@/components/integrations-section";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
+import { TrialForm } from "@/components/trial-form";
 
 export default function Home() {
+  const [isTrialFormOpen, setIsTrialFormOpen] = useState(false);
+
+  const handleStartTrial = () => {
+    setIsTrialFormOpen(true);
+  };
+
   return (
     <div className="min-h-screen">
-      <Navigation />
-      <HeroSection />
+      <Navigation onStartTrial={handleStartTrial} />
+      <HeroSection onStartTrial={handleStartTrial} />
       <FeaturesSection />
       <IndustrySection />
       <TrustSection />
       <IndiaFeatures />
       <DashboardShowcase />
       <TestimonialsSection />
-      <PricingSection />
+      <PricingSection onStartTrial={handleStartTrial} />
       <IntegrationsSection />
-      <CTASection />
+      <CTASection onStartTrial={handleStartTrial} />
       <Footer />
+      <TrialForm 
+        isOpen={isTrialFormOpen} 
+        onClose={() => setIsTrialFormOpen(false)} 
+      />
     </div>
   );
 }

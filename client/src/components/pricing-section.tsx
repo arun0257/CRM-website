@@ -54,7 +54,7 @@ const plans = [
   }
 ];
 
-const PlanCard = ({ plan, index }: { plan: typeof plans[0], index: number }) => (
+const PlanCard = ({ plan, index, onStartTrial }: { plan: typeof plans[0], index: number, onStartTrial: () => void }) => (
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -100,6 +100,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0], index: number }) => 
             ? 'brand-gradient text-white brand-shadow hover:shadow-lg'
             : 'bg-gray-500 hover:bg-gray-600 text-white border border-gray-400'
         }`}
+        onClick={plan.name === 'Enterprise' ? () => window.open('mailto:sales@leadspoint.in', '_blank') : onStartTrial}
       >
         {plan.name === 'Enterprise' ? 'Contact Sales' : 'Start Free Trial'}
       </Button>
@@ -107,7 +108,7 @@ const PlanCard = ({ plan, index }: { plan: typeof plans[0], index: number }) => 
   </motion.div>
 );
 
-export function PricingSection() {
+export function PricingSection({ onStartTrial }: { onStartTrial?: () => void }) {
   return (
     <section id="pricing" className="py-20 bg-white" itemScope itemType="https://schema.org/Product">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,7 +129,7 @@ export function PricingSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <PlanCard key={plan.name} plan={plan} index={index} />
+            <PlanCard key={plan.name} plan={plan} index={index} onStartTrial={onStartTrial || (() => {})} />
           ))}
         </div>
       </div>

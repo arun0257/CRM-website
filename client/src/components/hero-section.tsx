@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Rocket, Play, Check } from "lucide-react";
-import { TrialForm } from "./trial-form";
 
-export function HeroSection() {
-  const [isTrialFormOpen, setIsTrialFormOpen] = useState(false);
+export function HeroSection({ onStartTrial }: { onStartTrial?: () => void }) {
 
   return (
     <section className="bg-white py-20" itemScope itemType="https://schema.org/SoftwareApplication">
@@ -45,7 +42,7 @@ export function HeroSection() {
               <Button 
                 size="lg" 
                 className="btn-primary px-8 py-4 text-lg font-semibold rounded-lg"
-                onClick={() => setIsTrialFormOpen(true)}
+                onClick={onStartTrial}
               >
                 <Rocket className="mr-2 h-5 w-5" />
                 Start Free Trial
@@ -104,11 +101,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      
-      <TrialForm 
-        isOpen={isTrialFormOpen} 
-        onClose={() => setIsTrialFormOpen(false)} 
-      />
     </section>
   );
 }

@@ -2,15 +2,11 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Box, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { TrialForm } from "./trial-form";
 import { Logo } from "@/components/ui/logo";
 
-
-
-export function Navigation() {
+export function Navigation({ onStartTrial }: { onStartTrial?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isTrialFormOpen, setIsTrialFormOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +87,7 @@ export function Navigation() {
             </Button>
             <Button 
               className="btn-primary"
-              onClick={() => setIsTrialFormOpen(true)}
+              onClick={onStartTrial}
             >
               Start Free Trial
             </Button>
@@ -152,7 +148,7 @@ export function Navigation() {
                   </Button>
                   <Button 
                     className="brand-gradient text-white brand-shadow hover:shadow-lg transition-all duration-300"
-                    onClick={() => setIsTrialFormOpen(true)}
+                    onClick={onStartTrial}
                   >
                     Start Free Trial
                   </Button>
@@ -163,11 +159,6 @@ export function Navigation() {
         </AnimatePresence>
       </div>
     </motion.nav>
-    
-    <TrialForm 
-      isOpen={isTrialFormOpen} 
-      onClose={() => setIsTrialFormOpen(false)} 
-    />
     </>
   );
 }

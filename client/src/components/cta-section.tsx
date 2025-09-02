@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Rocket, Calendar } from "lucide-react";
 import { motion } from "framer-motion";
-import { TrialForm } from "./trial-form";
 
-export function CTASection() {
-  const [isTrialFormOpen, setIsTrialFormOpen] = useState(false);
+export function CTASection({ onStartTrial }: { onStartTrial?: () => void }) {
 
   return (
     <section className="py-20 brand-gradient">
@@ -37,7 +34,7 @@ export function CTASection() {
             <Button
               size="lg"
               className="bg-white text-black hover:bg-gray-50 px-10 py-4 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 rounded-xl focus-brand animate-pulse-brand"
-              onClick={() => setIsTrialFormOpen(true)}
+              onClick={onStartTrial}
             >
               <Rocket className="mr-3 h-6 w-6" />
               Start Your Free Trial
@@ -80,11 +77,6 @@ export function CTASection() {
           </div>
         </motion.div>
       </div>
-      
-      <TrialForm 
-        isOpen={isTrialFormOpen} 
-        onClose={() => setIsTrialFormOpen(false)} 
-      />
     </section>
   );
 }
