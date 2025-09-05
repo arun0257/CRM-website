@@ -18,6 +18,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -40,6 +41,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch('https://crm.leadspoint.in/api/accounts/register-organization/', {
         method: 'POST',
@@ -57,11 +59,15 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
       }
     } catch (error) {
       console.error('Failed to send OTP:', error);
+      alert('Failed to send OTP. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleOtpVerify = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch('https://crm.leadspoint.in/api/accounts/verify-otp-only/', {
         method: 'POST',
@@ -79,11 +85,15 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
       }
     } catch (error) {
       console.error('Failed to verify OTP:', error);
+      alert('Failed to verify OTP. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await fetch('https://crm.leadspoint.in/api/accounts/complete-registration/', {
         method: 'POST',
@@ -109,6 +119,8 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
     } catch (error) {
       console.error('Failed to complete registration:', error);
       alert('Registration failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,7 +136,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="modal-overlay bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center px-4"
           onClick={onClose}
         >
           <motion.div
@@ -132,33 +144,31 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
-            className="modal-content w-full max-w-md my-8"
+            className="bg-white dark:bg-gray-800 w-full max-w-lg rounded-xl shadow-2xl relative animate-fadeIn"
           >
-            <Card className="bg-white border-0 shadow-2xl rounded-xl">
-              <CardHeader className="relative pb-6">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-4 top-4 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full"
-                  onClick={onClose}
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-                <div className="text-center">
-                  <div className="w-16 h-16 brand-gradient rounded-full flex items-center justify-center mx-auto mb-4 brand-shadow">
-                    <Rocket className="w-8 h-8 text-white" />
-                  </div>
-                  <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
-                    {step === 1 ? 'Verify Your Email' : step === 2 ? 'Complete Registration' : 'Registration Submitted!'}
-                  </CardTitle>
-                  <p className="text-gray-600">
-                    {step === 1 ? 'Join 10,000+ businesses growing with Leadspoint' : 
-                     step === 2 ? 'Tell us about your organization' : 
-                     'Your trial request is being reviewed'}
-                  </p>
+            <button
+              onClick={onClose}
+              className="absolute top-2 right-3 text-2xl text-gray-600 dark:text-gray-300 hover:text-red-500"
+            >
+              &times;
+            </button>
+            
+            <div className="p-6">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-black to-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <Rocket className="w-8 h-8 text-white" />
                 </div>
-              </CardHeader>
-              <CardContent className="px-8 pb-8">
+                <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+                  {step === 1 ? 'Verify Your Email' : step === 2 ? 'Complete Registration' : 'Registration Submitted!'}
+                </h2>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {step === 1 ? 'Join 10,000+ businesses growing with Leadspoint' : 
+                   step === 2 ? 'Tell us about your organization' : 
+                   'Your trial request is being reviewed'}
+                </p>
+              </div>
+              
+              <div className="space-y-4">
                 {step === 3 ? (
                   <div className="text-center space-y-6">
                     <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
@@ -186,7 +196,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
                     </div>
                     <Button
                       onClick={onClose}
-                      className="w-full brand-gradient text-white h-12 text-lg font-semibold rounded-lg brand-shadow hover:shadow-xl transition-all duration-200"
+                      className="w-full bg-gradient-to-r from-black to-gray-600 hover:from-gray-800 hover:to-gray-700 text-white h-12 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
                     >
                       Close
                     </Button>
@@ -209,9 +219,20 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
 
                       <Button
                         type="submit"
-                        className="w-full brand-gradient text-white h-12 text-lg font-semibold rounded-lg brand-shadow hover:shadow-xl transition-all duration-200"
+                        disabled={loading}
+                        className="w-full bg-gradient-to-r from-black to-gray-600 hover:from-gray-800 hover:to-gray-700 text-white h-12 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
                       >
-                        Send Verification Code
+                        {loading ? (
+                          <div className="flex items-center justify-center space-x-2">
+                            <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                            </svg>
+                            <span>Sending...</span>
+                          </div>
+                        ) : (
+                          'Send Verification Code'
+                        )}
                       </Button>
 
                       <div className="text-center space-y-2">
@@ -253,9 +274,20 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
                         </Button>
                         <Button
                           type="submit"
-                          className="flex-1 brand-gradient text-white h-12 text-lg font-semibold rounded-lg brand-shadow hover:shadow-xl transition-all duration-200"
+                          disabled={loading}
+                          className="flex-1 bg-gradient-to-r from-black to-gray-600 hover:from-gray-800 hover:to-gray-700 text-white h-12 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
                         >
-                          Verify Email
+                          {loading ? (
+                            <div className="flex items-center justify-center space-x-2">
+                              <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                              </svg>
+                              <span>Verifying...</span>
+                            </div>
+                          ) : (
+                            'Verify Email'
+                          )}
                         </Button>
                       </div>
                       
@@ -317,7 +349,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
                     <div>
                       <Label htmlFor="users" className="text-sm font-medium text-gray-700 mb-2 block">Team Size *</Label>
                       <Select onValueChange={(value) => setFormData({ ...formData, users: value })} required>
-                        <SelectTrigger className="h-12 border-gray-200 focus:border-gray-500 rounded-lg">
+                        <SelectTrigger className="h-12 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-black focus:border-black rounded-lg">
                           <SelectValue placeholder="Select size" />
                         </SelectTrigger>
                         <SelectContent className="z-[10001]">
@@ -332,7 +364,7 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
                     <div>
                       <Label htmlFor="business" className="text-sm font-medium text-gray-700 mb-2 block">Industry *</Label>
                       <Select onValueChange={(value) => setFormData({ ...formData, business: value })} required>
-                        <SelectTrigger className="h-12 border-gray-200 focus:border-gray-500 rounded-lg">
+                        <SelectTrigger className="h-12 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-black focus:border-black rounded-lg">
                           <SelectValue placeholder="Select industry" />
                         </SelectTrigger>
                         <SelectContent className="z-[10001]">
@@ -352,15 +384,28 @@ export function TrialForm({ isOpen, onClose }: TrialFormProps) {
 
                     <Button
                       type="submit"
-                      className="w-full brand-gradient text-white h-12 text-lg font-semibold rounded-lg brand-shadow hover:shadow-xl transition-all duration-200"
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-black to-gray-600 hover:from-gray-800 hover:to-gray-700 text-white h-12 text-lg font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-50"
                     >
-                      <Rocket className="mr-2 h-5 w-5" />
-                      Complete Registration
+                      {loading ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                          </svg>
+                          <span>Submitting...</span>
+                        </div>
+                      ) : (
+                        <>
+                          <Rocket className="mr-2 h-5 w-5" />
+                          Complete Registration
+                        </>
+                      )}
                     </Button>
                   </form>
                 )}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}
