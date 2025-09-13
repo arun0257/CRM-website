@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Rocket, Play, Check } from "lucide-react";
 
 export function HeroSection({ onStartTrial }: { onStartTrial?: () => void }) {
 
@@ -44,7 +43,6 @@ export function HeroSection({ onStartTrial }: { onStartTrial?: () => void }) {
                 className="btn-primary px-8 py-4 text-lg font-semibold rounded-lg"
                 onClick={onStartTrial}
               >
-                <Rocket className="mr-2 h-5 w-5" />
                 Start Free Trial
               </Button>
               <Button 
@@ -53,21 +51,13 @@ export function HeroSection({ onStartTrial }: { onStartTrial?: () => void }) {
                 className="btn-secondary px-8 py-4 text-lg font-semibold rounded-lg"
                 onClick={() => window.open('https://www.youtube.com/watch?v=demo-video', '_blank', 'noopener,noreferrer')}
               >
-                <Play className="mr-2 h-5 w-5" />
                 Watch Demo
               </Button>
             </div>
 
             <div className="mt-8">
-              <p className="text-sm text-gray-500 mb-4">✓ No credit card required • ✓ 14-day free trial • ✓ Cancel anytime</p>
-              <div className="flex items-center space-x-4">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold">A</div>
-                  <div className="w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold">R</div>
-                  <div className="w-8 h-8 bg-purple-500 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-bold">S</div>
-                </div>
-                <span className="text-gray-600 text-sm">Join 10,000+ businesses growing with Leadspoint</span>
-              </div>
+              <p className="text-sm text-gray-500 mb-4">No credit card required • 14-day free trial • Cancel anytime</p>
+              <p className="text-gray-600 text-sm">Join 10,000+ businesses growing with Leadspoint</p>
             </div>
           </div>
 

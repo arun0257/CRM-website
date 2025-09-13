@@ -1,49 +1,39 @@
 import { motion } from "framer-motion";
-import { Users, Zap, TrendingUp, GitBranch, Mail, Shield, Smartphone, Globe, Settings } from "lucide-react";
 
 const features = [
   {
-    icon: GitBranch,
     title: "Visual Sales Pipeline",
     description: "Track deals through customizable stages with drag-and-drop interface. Never lose a potential sale again."
   },
   {
-    icon: Users,
     title: "360° Customer Management",
     description: "Complete customer profiles with interaction history, WhatsApp chats, calls, and purchase behavior."
   },
   {
-    icon: Mail,
     title: "Gmail & Outlook Integration",
     description: "Sync emails automatically, track opens, and manage campaigns directly from your favorite email platform."
   },
   {
-    icon: Zap,
     title: "WhatsApp Business API",
     description: "Send bulk messages, automate responses, and manage customer conversations at scale with official WhatsApp integration."
   },
   {
-    icon: TrendingUp,
     title: "AI-Powered Analytics",
     description: "Predictive lead scoring, sales forecasting, and performance insights to boost your revenue by 40%."
   },
   {
-    icon: Shield,
     title: "Enterprise Security",
     description: "ISO 27001 certified, GDPR compliant, and bank-grade encryption. Your data is 100% secure."
   },
   {
-    icon: Smartphone,
     title: "Responsive Web Design",
     description: "Mobile-optimized web interface that works perfectly on all devices and screen sizes."
   },
   {
-    icon: Globe,
     title: "Indian Market Focus",
     description: "Built specifically for Indian business culture, practices, and customer behavior patterns."
   },
   {
-    icon: Settings,
     title: "Custom Fields & Workflows",
     description: "Adapt the CRM to your business needs with unlimited custom fields and automated workflows."
   }
@@ -69,25 +59,19 @@ export function FeaturesSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <div className="w-12 h-12 brand-gradient rounded-lg flex items-center justify-center mb-6 brand-shadow">
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </motion.div>
-            );
-          })}
+          {features.map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
